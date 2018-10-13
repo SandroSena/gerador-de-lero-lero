@@ -35,9 +35,9 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <p>{this.state.frase}</p>
-        <button onClick={this.mudaFrase}>Gerar Frase</button>
+        <button onClick={this.mudaFrase} className="btn">Gerar Frase</button>
       </div>
     );
   }
