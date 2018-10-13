@@ -1,25 +1,43 @@
-import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from "react";
+import logo from "./logo.svg";
+import "./App.css";
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    this.json_data = require("./frases.json");
+    this.state = {
+      frase: "..."
+    }
+
+    this.gerarFrase();
+  }
+
+  geraNumeroInteiro(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  }
+
+  mudaFrase = event => {
+    const fraseGenerator = this.todasFrases[this.geraNumeroInteiro(0, 11)];
+    this.setState({
+      frase: fraseGenerator
+    });
+  };
+
+  gerarFrase = () => {
+    const totalFrases = this.json_data;
+
+    this.todasFrases = totalFrases.map(frases => frases.frase);
+  };
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div>
+        <p>{this.state.frase}</p>
+        <button onClick={this.mudaFrase}>Gerar Frase</button>
       </div>
     );
   }
