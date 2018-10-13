@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 import logo from "./logo.svg";
 import "./App.css";
+import json_data from "./frases.json";
 
 class App extends Component {
 
   constructor(props) {
     super(props);
-    this.json_data = require("./frases.json");
     this.state = {
       frase: "..."
     }
@@ -28,7 +28,7 @@ class App extends Component {
   };
 
   gerarFrase = () => {
-    const totalFrases = this.json_data;
+    const totalFrases = json_data;
 
     this.todasFrases = totalFrases.map(frases => frases.frase);
   };
